@@ -19,4 +19,8 @@ module ArtifactDeck
   def self.computed_checksum(bytes = [])
     bytes.inject(0, :+) & 0xFF
   end
+
+  def self.root
+    File.expand_path '../..', __FILE__
+  end
 end

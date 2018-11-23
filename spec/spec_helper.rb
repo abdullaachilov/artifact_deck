@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "artifact_deck"
+require 'fixture_helpers'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

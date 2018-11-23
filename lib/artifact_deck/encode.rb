@@ -4,6 +4,13 @@ module ArtifactDeck::Encode
   INVALID_DECK = 'Invalid deck'.freeze
 
   def self.call(deck = {})
+    deck.default_proc = proc do |h, k|
+      case k
+        when String then sym = k.to_sym; h[sym] if h.key?(sym)
+        when Symbol then str = k.to_s; h[str] if h.key?(str)
+     end
+    end
+
     raise INVALID_DECK if deck.empty? || !deck[:heroes] || !deck[:cards]
 
     heroes = deck[:heroes].sort { |x, y| x[:id] <=> y[:id] }
